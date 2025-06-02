@@ -20,7 +20,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Failed to save user" }, { status: 500 });
       }
     }
-
+    console.log("Received Clerk event:", JSON.stringify(event, null, 2));
     return NextResponse.json({ received: true });
   } catch (err) {
     console.error("Webhook handler error:", err);
