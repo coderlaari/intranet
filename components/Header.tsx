@@ -1,8 +1,11 @@
 "use client";
 
+// Next / React Imports
 import React from "react";
-import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+// UI Imports
+import { Button } from "./ui/button";
+import { HomeIcon, LayoutDashboardIcon, HelpCircle, Bell } from "lucide-react";
 
 export default function Header() {
   const router = useRouter();
@@ -14,6 +17,7 @@ export default function Header() {
           router.push("/");
         }}
       >
+        <HomeIcon />
         Home
       </Button>
       <Button
@@ -22,6 +26,7 @@ export default function Header() {
           router.push("/dashboard");
         }}
       >
+        <LayoutDashboardIcon />
         Dashboard
       </Button>
       <Button
@@ -30,6 +35,7 @@ export default function Header() {
           router.push("/support");
         }}
       >
+        <HelpCircle />
         Support
       </Button>
       <Button
@@ -38,6 +44,7 @@ export default function Header() {
           router.push("/announcements");
         }}
       >
+        <Bell />
         Announcements
       </Button>
     </div>

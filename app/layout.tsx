@@ -10,6 +10,8 @@ import {
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,14 +40,13 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <header className="flex justify-between items-center p-4 gap-4 h-16 bg-gray-600 text-white">
-            <h1 className="text-3xl">
+            <Link href="/" className="text-3xl">
               {process.env.NEXT_PUBLIC_COMPANY_NAME_INTRANET}
-            </h1>
+            </Link>
             <Header />
             <div className="flex items-center gap-4">
               <SignedOut>
                 <SignInButton />
-                <SignUpButton />
               </SignedOut>
               <SignedIn>
                 <UserButton />
