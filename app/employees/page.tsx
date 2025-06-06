@@ -10,13 +10,12 @@ import {
   TableCell,
   TableHead,
 } from "@/components/ui/table";
-import { UUID } from "crypto";
 
 type Employee = {
-  id: UUID;
-  name: string;
+  id: string;
   email: string;
-  position: string;
+  first_name: string;
+  last_name: string;
 };
 
 export default function Employees() {
@@ -28,7 +27,7 @@ export default function Employees() {
       console.log("Fetching employees...");
       setLoading(true);
 
-      const { data, error } = await supabase.from("employees").select("*");
+      const { data, error } = await supabase.from("profiles").select("*");
 
       console.log("Data:", data);
       console.log("Error:", error);
@@ -49,18 +48,18 @@ export default function Employees() {
         <TableHeader>
           <TableRow>
             <TableHead>ID</TableHead>
-            <TableHead>Name</TableHead>
+            <TableHead>First Name</TableHead>
+            <TableHead>Last Name</TableHead>
             <TableHead>Email</TableHead>
-            <TableHead>Position</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {employees.map((emp) => (
             <TableRow key={emp.id}>
               <TableCell>{emp.id}</TableCell>
-              <TableCell>{emp.name}</TableCell>
+              <TableCell>{emp.first_name}</TableCell>
+              <TableCell>{emp.last_name}</TableCell>
               <TableCell>{emp.email}</TableCell>
-              <TableCell>{emp.position}</TableCell>
             </TableRow>
           ))}
         </TableBody>
