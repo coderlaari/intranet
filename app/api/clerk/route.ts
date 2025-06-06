@@ -1,3 +1,5 @@
+// Doesn't work ask ChatGPT
+
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
