@@ -4,16 +4,14 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { useAuth, RedirectToSignIn, useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Dashboard() {
-  const router = useRouter();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
 
@@ -23,39 +21,33 @@ export default function Dashboard() {
     <div>
       <h1 className="text-4xl text-center">Welcome back, {user?.firstName}</h1>
 
-      <div className="flex justify-center items-center mt-8">
+      <div className="flex justify-center items-center mt-8 gap-7">
         <Card className="max-w-md w-full">
           <CardHeader>
-            <CardTitle>Your profile</CardTitle>
-            <CardDescription>
-              Do you ever think how your profile looks?
-            </CardDescription>
+            <CardTitle>Account Info</CardTitle>
           </CardHeader>
           <CardContent>
-            <br />
-            <div className="flex items-center space-x-4">
-              <img
-                className="rounded-full h-15"
-                src={user?.imageUrl}
-                alt="profile_img"
-              />
-              <h1 className="text-3xl">
-                {user?.firstName} {user?.lastName}
-              </h1>
-            </div>
+            <p>
+              Last sign-in at:{" "}
+              {user?.lastSignInAt
+                ? new Date(user.lastSignInAt).toLocaleString()
+                : "N/A"}
+            </p>
+            <p>Your Name*: {user?.firstName + " " + user?.lastName}</p>
+            <p>
+              Your Primary Email Address*:{" "}
+              <Link
+                className="text-blue-500"
+                href={`mailto:${
+                  user?.primaryEmailAddress?.emailAddress ?? "N/A"
+                }`}
+              >
+                {user?.primaryEmailAddress?.emailAddress ?? "N/A"}
+              </Link>
+            </p>
           </CardContent>
           <CardFooter>
-            <h1>
-              Do you need help? <br />
-              <Button
-                className="bg-gray-600 hover:bg-gray-700"
-                onClick={() => {
-                  router.push("/support");
-                }}
-              >
-                Contact support
-              </Button>
-            </h1>
+            <p>* Associated with this account.</p>
           </CardFooter>
         </Card>
       </div>
