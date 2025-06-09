@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Swal from "sweetalert2";
 
 export default function AdminForm() {
   const [userId, setUserId] = useState("");
@@ -14,6 +15,20 @@ export default function AdminForm() {
   const promote = async () => {
     setStatus("loading");
     setMessage(null);
+    const response = Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to promote user with ID of ${userId}`,
+      icon: "warning",
+      confirmButtonText: "Yes, I'm sure.",
+      confirmButtonColor: "#27E530",
+      showCancelButton: true,
+      cancelButtonColor: "#F03738",
+      cancelButtonText: "Cancel",
+    });
+    if (!(await response).isConfirmed) {
+      setStatus("idle");
+      return;
+    }
 
     try {
       const res = await fetch("/api/clerk/set-admin", {
@@ -44,14 +59,18 @@ export default function AdminForm() {
 
   return (
     <div className="space-y-3">
+      <h2 className="text-xl font-semibold text-center">Make Admin</h2>
       <Input
         placeholder="Enter User ID"
         value={userId}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setUserId(e.target.value)
-        }
+        onChange={(e) => setUserId(e.target.value)}
+        className="w-full"
       />
-      <Button onClick={promote} disabled={status === "loading" || !userId}>
+      <Button
+        onClick={promote}
+        disabled={status === "loading" || !userId}
+        className="w-full"
+      >
         {status === "loading" ? "Promoting..." : "Make Admin"}
       </Button>
 
