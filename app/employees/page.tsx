@@ -39,7 +39,17 @@ export default function Employees() {
     fetchEmployees();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex flex-col items-center">
+        <img
+          className="w-20 h-20 animate-spin mb-4"
+          src="./loading.png"
+          alt="Loading image"
+        />
+        <h1 className="text-4xl">Loading data, please wait...</h1>
+      </div>
+    );
 
   return (
     <div>
