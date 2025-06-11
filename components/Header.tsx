@@ -1,13 +1,19 @@
 "use client";
 
-// Next / React Imports
 import React from "react";
-import { useRouter } from "next/navigation";
-// UI Imports
+import { redirect, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
-import { HomeIcon, LayoutDashboardIcon, HelpCircle, Bell } from "lucide-react";
+import {
+  HomeIcon,
+  LayoutDashboardIcon,
+  HelpCircle,
+  Bell,
+  Monitor,
+} from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 export default function Header() {
+  const { user } = useUser();
   const router = useRouter();
   return (
     <div className="flex gap-2 mr-auto">
@@ -18,7 +24,7 @@ export default function Header() {
         }}
       >
         <HomeIcon />
-        Home
+        <p>Home</p>
       </Button>
       <Button
         className="bg-amber-700 hover:bg-amber-800"
@@ -27,7 +33,7 @@ export default function Header() {
         }}
       >
         <LayoutDashboardIcon />
-        Dashboard
+        <p>Dashboard</p>
       </Button>
       <Button
         className="bg-amber-700 hover:bg-amber-800"
@@ -36,7 +42,7 @@ export default function Header() {
         }}
       >
         <HelpCircle />
-        Support
+        <p>Support</p>
       </Button>
       <Button
         className="bg-amber-700 hover:bg-amber-800"
@@ -45,7 +51,7 @@ export default function Header() {
         }}
       >
         <Bell />
-        Announcements
+        <p>Announcements</p>
       </Button>
     </div>
   );
