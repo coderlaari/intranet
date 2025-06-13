@@ -2,7 +2,6 @@ import { type Metadata } from "next";
 import {
   ClerkProvider,
   SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
@@ -12,6 +11,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
+import SignInBtn from "@/components/SignInBtn";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +47,7 @@ export default function RootLayout({
             <Header />
             <div className="flex items-center gap-4">
               <SignedOut>
-                <SignInButton />
+                <SignInBtn />
               </SignedOut>
               <SignedIn>
                 <UserButton />

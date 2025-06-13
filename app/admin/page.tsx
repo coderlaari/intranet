@@ -3,6 +3,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import MakeAdmin from "@/components/admin/MakeAdmin";
 import CreateAnnouncement from "@/components/admin/CreateAnnouncement";
+import DeleteMessages from "@/components/admin/DeleteMessages";
+import SupportRequests from "@/components/admin/SupportRequests";
 
 export default async function AdminPage() {
   const user = await currentUser();
@@ -19,6 +21,8 @@ export default async function AdminPage() {
       <div className="max-w-md mx-auto mt-20 p-6 border border-gray-200 rounded-2xl shadow-lg bg-white space-y-6">
         <MakeAdmin />
         <CreateAnnouncement />
+        <DeleteMessages />
+        <SupportRequests />
       </div>
     </div>
   );

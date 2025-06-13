@@ -4,13 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
-import devLog from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
 
 export default function Support() {
   const { user } = useUser();
   const [message, setMessage] = useState<string>("");
-  const sendSupport = async (message: string, userfullname: string) => {
-    console.log("sendSupport function called");
+  const sendSupport = async (message: string, requester: string) => {
+    const { error } = await supabase.from("support_requests").insert([
+      {
+        requester,
+        msg: message,
+      },
+    ]);
+    if (error) {
+      console.error("Error inserting support request:", error);
+    } else {
+      console.log("Support request sent successfully");
+    }
   };
   return (
     <div>
@@ -39,7 +49,7 @@ export default function Support() {
               message,
               (user?.firstName ?? "") + " " + (user?.lastName ?? "")
             );
-            devLog("Support function called");
+            console.log("Support function called");
             console.log("name:", user?.firstName + " " + user?.lastName);
           }}
         >
