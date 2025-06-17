@@ -10,15 +10,13 @@ import {
   Bell,
   Monitor,
 } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
 
 export default function Header() {
-  const { user } = useUser();
   const router = useRouter();
   return (
     <div className="flex gap-2 mr-auto">
       <Button
-        className="bg-amber-700 hover:bg-amber-800"
+        className="bg-emerald-400 hover:bg-emerald-500"
         onClick={() => {
           router.push("/");
         }}
@@ -27,7 +25,7 @@ export default function Header() {
         <p>Home</p>
       </Button>
       <Button
-        className="bg-amber-700 hover:bg-amber-800"
+        className="bg-emerald-400 hover:bg-emerald-500"
         onClick={() => {
           router.push("/dashboard");
         }}
@@ -36,7 +34,7 @@ export default function Header() {
         <p>Dashboard</p>
       </Button>
       <Button
-        className="bg-amber-700 hover:bg-amber-800"
+        className="bg-emerald-400 hover:bg-emerald-500"
         onClick={() => {
           router.push("/support");
         }}
@@ -45,7 +43,7 @@ export default function Header() {
         <p>Support</p>
       </Button>
       <Button
-        className="bg-amber-700 hover:bg-amber-800"
+        className="bg-emerald-400 hover:bg-emerald-500"
         onClick={() => {
           router.push("/announcements");
         }}

@@ -5,6 +5,7 @@ import MakeAdmin from "@/components/admin/MakeAdmin";
 import CreateAnnouncement from "@/components/admin/CreateAnnouncement";
 import DeleteMessages from "@/components/admin/DeleteMessages";
 import SupportRequests from "@/components/admin/SupportRequests";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default async function AdminPage() {
   const user = await currentUser();
@@ -22,7 +23,14 @@ export default async function AdminPage() {
         <MakeAdmin />
         <CreateAnnouncement />
         <DeleteMessages />
-        <SupportRequests />
+      </div>
+
+      <div className="flex justify-center mt-6">
+        <Card className="w-300 mr-5 ml-5">
+          <CardContent>
+            <SupportRequests />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

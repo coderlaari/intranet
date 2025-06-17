@@ -40,7 +40,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <header className="flex justify-between items-center p-4 gap-4 h-16 bg-gray-600 text-white">
+          <header className="flex justify-between items-center p-4 gap-4 h-16 bg-blue-500 text-white ">
             <Link href="/" className="text-3xl">
               {process.env.NEXT_PUBLIC_COMPANY_NAME_INTRANET}
             </Link>

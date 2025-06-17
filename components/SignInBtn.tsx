@@ -11,6 +11,7 @@ export default function SignInBtn() {
         onClick={() => {
           redirect("/sign-in");
         }}
+        className="bg-gradient-to-br from-blue-400 to-amber-950"
       >
         Sign In
       </Button>

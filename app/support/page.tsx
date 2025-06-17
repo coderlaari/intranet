@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import Swal from "sweetalert2";
 
 export default function Support() {
   const { user } = useUser();
@@ -18,8 +19,19 @@ export default function Support() {
     ]);
     if (error) {
       console.error("Error inserting support request:", error);
+      Swal.fire({
+        title: "Error sending support request",
+        icon: "error",
+        confirmButtonText: "Try again",
+      });
     } else {
       console.log("Support request sent successfully");
+      Swal.fire({
+        title: "Support Request sent successfully",
+        icon: "success",
+        confirmButtonText: "Continue",
+      });
+      setMessage("");
     }
   };
   return (
@@ -36,6 +48,7 @@ export default function Support() {
         <Textarea
           id="message"
           name="message"
+          value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="w-full max-w-md h-100"
           placeholder="Your message"
@@ -45,12 +58,7 @@ export default function Support() {
         <Button
           className="bg-green-700 hover:bg-green-800 h-12 w-30"
           onClick={() => {
-            sendSupport(
-              message,
-              (user?.firstName ?? "") + " " + (user?.lastName ?? "")
-            );
-            console.log("Support function called");
-            console.log("name:", user?.firstName + " " + user?.lastName);
+            sendSupport(message, user?.fullName ?? "Unknown User");
           }}
         >
           Send

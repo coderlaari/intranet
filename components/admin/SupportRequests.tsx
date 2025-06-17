@@ -87,7 +87,7 @@ export default function SupportRequests() {
                 <br />
                 <div className="flex gap-4">
                   <Button
-                    className="bg-gradient-to-r from-blue-400 to-green-400"
+                    className="bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 hover:from-green-500 hover:via-teal-600 hover:to-blue-600 text-white font-semibold"
                     onClick={() => makeRequestDone(req.id)}
                   >
                     <Verified />
@@ -101,6 +101,7 @@ export default function SupportRequests() {
                     Delete
                   </Button>
                 </div>
+                <hr className="mt-6 border-t border-gray-300" />
               </li>
             )
         )}
