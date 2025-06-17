@@ -10,8 +10,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
 import SignInBtn from "@/components/SignInBtn";
 
 const geistSans = Geist({
